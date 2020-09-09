@@ -1,0 +1,42 @@
+apiVersion: v1
+data:
+  .dockerconfigjson: ewoJImF1dGhzIjogewoJCSJzYW5hcnRpZmFjdG9yeS5qZnJvZy5pbyI6IHsKCQkJImF1dGgiOiAiYzJGdWRHaHZjMmh5WldSa2VYQmhjbUZ3WVhScExuUnlRR2R0WVdsc0xtTnZiVG8zTkRJeU1URkFWbUZ1IgoJCX0KCX0sCgkiSHR0cEhlYWRlcnMiOiB7CgkJIlVzZXItQWdlbnQiOiAiRG9ja2VyLUNsaWVudC8xOS4wMy4xMiAobGludXgpIgoJfQp9
+kind: Secret
+metadata:  
+  name: regcred1
+type: kubernetes.io/dockerconfigjson 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-kubernetes
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: hello-kubernetes
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-kubernetes1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello-kubernetes
+  template:
+    metadata:
+      labels:
+        app: hello-kubernetes
+    spec:
+      containers:
+      - name: hello-kubernetes
+        image: sanartifactory.jfrog.io/docker-local/hello-kubernetes:latest
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: regcred1  
+
