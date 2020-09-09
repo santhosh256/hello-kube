@@ -1,4 +1,4 @@
-# Hello Kubernetes!
+# Hello Kubernetes! 
 
 This container image can be deployed on a Kubernetes cluster. When accessed via a web browser on port `8080`, it will display:
 - a default **Hello world!** message
@@ -13,7 +13,7 @@ The default "Hello world!" message displayed can be overridden using the `MESSAG
 
 It is available on DockerHub as:
 
-- [paulbouwer/hello-kubernetes:1.8](https://hub.docker.com/r/paulbouwer/hello-kubernetes/)
+- [hello-kubernetes:1.8](https://sanartifactory.jfrog.io/artifactory/docker-local/hello-kubernetes)
 
 ## Deploy
 
