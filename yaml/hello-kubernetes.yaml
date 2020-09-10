@@ -14,7 +14,7 @@ spec:
   type: LoadBalancer
   ports:
   - port: 80
-    targetPort: 8080
+    targetPort: 6060
   selector:
     app: hello-kubernetes
 ---
@@ -36,7 +36,7 @@ spec:
       - name: hello-kubernetes
         image: sanartifactory.jfrog.io/docker-local/hello-kubernetes:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 6060
       imagePullSecrets:
       - name: regcred1  
 
